@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
+
   render() {
+    const { count } = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <>
+        <div>{count}</div>
+        <button
+          onClick={() => {
+            this.modify(count + 1);
+          }}
+        >
+          Increment
+        </button>
+      </>
     );
   }
+
+  modify = n => {
+    this.setState(current => {
+      return {
+        count: n,
+      };
+    });
+  };
 }
 
 export default App;
