@@ -1,34 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
-class App extends React.Component {
-  state = {
-    count: 0,
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [email, setEmail] = useState("");
+
+  const updateEmail = e => {
+    const {
+      target: { value },
+    } = e;
+    setEmail(value);
   };
 
-  render() {
-    const { count } = this.state;
-
-    return (
-      <>
-        <div>{count}</div>
-        <button
-          onClick={() => {
-            this.modify(count + 1);
-          }}
-        >
-          Increment
-        </button>
-      </>
-    );
-  }
-
-  modify = n => {
-    this.setState(current => {
-      return {
-        count: n,
-      };
-    });
-  };
-}
+  return (
+    <>
+      <div>{count}</div>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+      <input placeholder="Email" value={email} onChange={updateEmail} />
+    </>
+  );
+};
 
 export default App;
