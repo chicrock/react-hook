@@ -1,6 +1,30 @@
 import React, { useState } from "react";
 
+const useInput = defaultValue => {
+  const [value, setValue] = useState(defaultValue);
+
+  const onChange = e => {
+    const {
+      target: { value },
+    } = e;
+
+    setValue(value);
+  };
+
+  return { value, onChange };
+};
+
 const App = () => {
+  const nameInput = useInput("");
+
+  return (
+    <div>
+      <h1>Use Hooks</h1>
+      <br />
+      <input {...nameInput} placeholder="What's your name" />
+    </div>
+  );
+  /*
   const [count, setCount] = useState(0);
   const [email, setEmail] = useState("");
 
@@ -19,6 +43,7 @@ const App = () => {
       <input placeholder="Email" value={email} onChange={updateEmail} />
     </>
   );
+  */
 };
 
 export default App;
